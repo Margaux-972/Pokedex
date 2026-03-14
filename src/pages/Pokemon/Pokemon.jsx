@@ -25,7 +25,7 @@ const Pokemon = () => {
     fetchData();
   }, [name]);
   return (
-    <main>
+    <main className="pokemon-page">
       <div className="container">
         {isLoading ? (
           <h1>Chargement...</h1>
@@ -33,18 +33,29 @@ const Pokemon = () => {
           <section>
             <h1>Pokemon</h1>
             <div>
-              <img src={data.sprites.front_default} alt="pokéPic" />
-
-              {data.forms.map((element, index) => {
-                return <div key={index}>{element.name}</div>;
-              })}
-              {data.types.map((element, index) => {
-                return (
-                  <Link to={"/type/" + element.type.name} key={index}>
-                    <div>{element.type.name}</div>
-                  </Link>
-                );
-              })}
+              <section className="pokecard">
+                {data.forms.map((element, index) => {
+                  return (
+                    <div key={index} className="name">
+                      {element.name}
+                    </div>
+                  );
+                })}
+                <img src={data.sprites.front_default} alt="pokéPic" />
+              </section>
+              <section className="infos">
+                {data.types.map((element, index) => {
+                  return (
+                    <Link
+                      to={"/type/" + element.type.name}
+                      key={index}
+                      className="links"
+                    >
+                      <div>{element.type.name}</div>
+                    </Link>
+                  );
+                })}
+              </section>
             </div>
           </section>
         )}
