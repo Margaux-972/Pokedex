@@ -4,13 +4,18 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Pokemons = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
+
+  const limit = 20;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
+        );
         // console.log(response.data); //{count: 1350, next: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20', previous: null, results: Array(20)}
         // console.log(response.data.results); // [{name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/'}]
         setData(response.data.results);
@@ -33,6 +38,7 @@ const Pokemons = () => {
             <section>
               {data.map((pokemons, index) => {
                 //   console.log(pokemons); // {name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/'}
+                const id = offset + index + 1;
                 return (
                   <Link
                     to={"/pokemon/" + pokemons.name}
@@ -42,8 +48,8 @@ const Pokemons = () => {
                     <article className="pokecard">
                       <div>{pokemons.name}</div>
                       <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-                        alt="bulbasaur"
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                        alt={pokemons.name}
                       />
                     </article>
                   </Link>

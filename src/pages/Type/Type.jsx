@@ -37,13 +37,20 @@ const Type = () => {
               {
                 <div>
                   {data.pokemon.map((element, index) => {
+                    const id = element.pokemon.url.split("/")[6];
                     return (
                       <Link
                         to={"/pokemon/" + element.pokemon.name}
                         key={index}
                         className="links"
                       >
-                        <div>{element.pokemon.name}</div>
+                        <div>
+                          <div>{element.pokemon.name}</div>
+                          <img
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                            alt={element.pokemon.name}
+                          />
+                        </div>
                       </Link>
                     );
                   })}
