@@ -1,0 +1,29 @@
+.type-page .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.type-page h1 {
+  margin: 100px;
+}
+
+.type-page .links {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.type-page .links > div {
+  border: solid 3px black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.type-page section > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

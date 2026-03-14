@@ -26,25 +26,31 @@ const Type = () => {
   }, [type]);
 
   return (
-    <main>
+    <main className="type-page">
       <div className="container">
         {isLoading ? (
           <h1>Chargement...</h1>
         ) : (
-          <section>
-            <h1>Type:{type}</h1>
-            {
-              <div>
-                {data.pokemon.map((element, index) => {
-                  return (
-                    <Link to={"/pokemon/" + element.pokemon.name} key={index}>
-                      <div>{element.pokemon.name}</div>
-                    </Link>
-                  );
-                })}
-              </div>
-            }
-          </section>
+          <>
+            <h1>Type : {type}</h1>
+            <section>
+              {
+                <div>
+                  {data.pokemon.map((element, index) => {
+                    return (
+                      <Link
+                        to={"/pokemon/" + element.pokemon.name}
+                        key={index}
+                        className="links"
+                      >
+                        <div>{element.pokemon.name}</div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              }
+            </section>
+          </>
         )}
       </div>
     </main>

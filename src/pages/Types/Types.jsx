@@ -22,21 +22,27 @@ const Types = () => {
     fetchData();
   }, []);
   return (
-    <main>
+    <main className="types-page">
       <div className="container">
         {isLoading ? (
           <h1>Chargement...</h1>
         ) : (
-          <section>
+          <>
             <h1>Types</h1>
-            {data.map((types, index) => {
-              return (
-                <Link to={"/type/" + types.name} key={index}>
-                  <div>{types.name}</div>
-                </Link>
-              );
-            })}
-          </section>
+            <section>
+              {data.map((types, index) => {
+                return (
+                  <Link
+                    to={"/type/" + types.name}
+                    key={index}
+                    className="links"
+                  >
+                    <div>{types.name}</div>
+                  </Link>
+                );
+              })}
+            </section>
+          </>
         )}
       </div>
     </main>
